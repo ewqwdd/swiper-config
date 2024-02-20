@@ -14,7 +14,9 @@
       <div class="swiper-wrapper">
         <!-- Slides -->
         <div class="swiper-slide swiper-card">
-            <img src="slider_image.png"/>
+            <div class="picture">
+                <img src="slider_image.png"/>
+            </div>
             <div class="card-content">
                 <h3>
                     Dowiedz się, jak tworzyć różne logo
@@ -73,17 +75,20 @@
       const rotateZRegex = /rotateZ\([^']+\)/g;
       const translateRegex = /, -[0-9]00px/g;
       const swiper = new Swiper(".swiper", {
-        slidesPerView: 1,
-        navigation: {
-            nextEl: '.swiper-button-next',
-            prevEl: '.swiper-button-prev',
+        grabCursor: true,
+      effect: "creative",
+      creativeEffect: {
+        prev: {
+          shadow: true,
+          translate: ["-8%", '-2%', -50],
+          rotate: [0, 0, -7]
         },
-        effect: "cards",
-        cardsEffect: {
-            perSlideOffset: 10, // Space between cards in px
-            perSlideRotate: 5,
-            rotate: true,
+        next: {
+          shadow: true,
+          translate: ["8%", '-2%', -50],
+          rotate: [0, 0, 5]
         },
+      },
       });
 </script>
   </body>
