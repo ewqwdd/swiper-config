@@ -62,10 +62,9 @@
       </div>
       <!-- If we need pagination -->
       <div class="swiper-pagination"></div>
-
-      <!-- If we need navigation buttons -->
       <div class="swiper-button-prev"></div>
       <div class="swiper-button-next"></div>
+      <!-- If we need navigation buttons -->
     </div>
 
     <!-- JAVASCRIPT FOR SWIPER -->
@@ -76,20 +75,24 @@
       const translateRegex = /, -[0-9]00px/g;
       const swiper = new Swiper(".swiper", {
         grabCursor: true,
-      effect: "creative",
-      creativeEffect: {
-        prev: {
-          shadow: true,
-          translate: ["-8%", '-2%', -50],
-          rotate: [0, 0, -7]
+        effect: "creative",
+        creativeEffect: {
+            prev: {
+            shadow: true,
+            translate: ["-50px", '20px', -50],
+            rotate: [0, 0, -7]
+            },
+            next: {
+            shadow: true,
+            translate: ["70px", '0px', -50],
+            rotate: [0, 0, 5]
+            },
         },
-        next: {
-          shadow: true,
-          translate: ["8%", '-2%', -50],
-          rotate: [0, 0, 5]
-        },
-      },
-      });
+        navigation: {
+                nextEl: ".swiper-button-next",
+                prevEl: ".swiper-button-prev",
+            },
+        });
 </script>
   </body>
 </html>
