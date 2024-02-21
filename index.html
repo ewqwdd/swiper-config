@@ -98,7 +98,7 @@
       let swiper;
 
       const initSwiper = (effects) => {
-        swiper?.destroy();
+        swiper?.destroy(true, false);
         swiper = new Swiper(".swiper", {
           grabCursor: true,
           effect: "creative",

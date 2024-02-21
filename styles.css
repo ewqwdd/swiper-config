@@ -12,9 +12,7 @@ body {
     align-items: center;
 }
 
-.swiper {
-    width: 610px;
-    overflow: visible !important;
+:root {
     --image-height: 465px;
     --swiper-pagination-top: 447px;
     --swiper-pagination-bottom: none; 
@@ -23,7 +21,12 @@ body {
     --swiper-pagination-bullet-border-radius: 24px;
     --swiper-pagination-bullet-inactive-opacity: .4;
     --swiper-pagination-bullet-inactive-color: white;
-    --swiper-theme-color: white;
+    --swiper-theme-color: white !important;
+}
+
+.swiper {
+    width: 610px;
+    overflow: visible !important;
 }
 .swiper-card {
     overflow: hidden;
