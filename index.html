@@ -14,7 +14,7 @@
       <div class="swiper-wrapper">
         <!-- Slides -->
         <div class="swiper-slide swiper-card">
-            <img src="slider_image.png" />
+          <img src="slider_image.png" />
           <div class="card-content">
             <h3>Dowiedz się, jak tworzyć różne logo</h3>
             <p>
@@ -66,63 +66,68 @@
 
     <script>
       // Breakpoint for mobile version
-      const MOBILE_BREAKPOINT = 560
+      const MOBILE_BREAKPOINT = 920;
 
       const desktopEffects = {
-          isDesktop: true,
-          prev: {
-            shadow: true,
-            translate: ["-50px", "20px", -50],
-            rotate: [0, 0, -7],
-          },
-          next: {
-            shadow: true,
-            translate: ["70px", "0px", -50],
-            rotate: [0, 0, 5],
-          },
-        }
-        const mobileEffects = {
-          isDesktop: false,
-          prev: {
-            shadow: true,
-            translate: ["-20px", "0px", -300],
-            rotate: [0, 0, -4],
-          },
-          next: {
-            shadow: true,
-            translate: ["20px", "0px", -300],
-            rotate: [0, 0, 2],
-          },
-        }
+        isDesktop: true,
+        prev: {
+          shadow: true,
+          translate: ["-50px", "20px", -50],
+          rotate: [0, 0, -7],
+        },
+        next: {
+          shadow: true,
+          translate: ["70px", "0px", -50],
+          rotate: [0, 0, 5],
+        },
+      };
+      const mobileEffects = {
+        isDesktop: false,
+        prev: {
+          shadow: true,
+          translate: ["-20px", "0px", -300],
+          rotate: [0, 0, -4],
+        },
+        next: {
+          shadow: true,
+          translate: ["20px", "0px", -300],
+          rotate: [0, 0, 2],
+        },
+      };
 
-      let swiper
+      let swiper;
 
-      const enableSwiper = (effects) => {
-        swiper?.destroy()
+      const initSwiper = (effects) => {
+        swiper?.destroy();
         swiper = new Swiper(".swiper", {
-        grabCursor: true,
-        effect: "creative",
-        creativeEffect: effects,
-        navigation: {
-          nextEl: ".swiper-button-next",
-          prevEl: ".swiper-button-prev",
-        },
-        pagination: {
-          el: ".swiper-pagination",
-          clickable: true,
-        },
-      });
-      }
+          grabCursor: true,
+          effect: "creative",
+          creativeEffect: effects,
+          navigation: {
+            nextEl: ".swiper-button-next",
+            prevEl: ".swiper-button-prev",
+          },
+          pagination: {
+            el: ".swiper-pagination",
+            clickable: true,
+          },
+        });
+      };
 
-      window.addEventListener('resize', () => {
-        if (window.innerWidth < MOBILE_BREAKPOINT && swiper.params.creativeEffect.isDesktop) {
-            enableSwiper(mobileEffects)
-        } else if (window.innerWidth >= MOBILE_BREAKPOINT && !swiper.params.creativeEffect.isDesktop){
-            enableSwiper(desktopEffects)
+      const responsiveInit = () => {
+        if (window.innerWidth < MOBILE_BREAKPOINT && (!swiper || swiper.params.creativeEffect.isDesktop)) {
+          initSwiper(mobileEffects);
+        } else if (
+          window.innerWidth >= MOBILE_BREAKPOINT &&
+          (!swiper || !swiper.params.creativeEffect.isDesktop)
+        ) {
+          initSwiper(desktopEffects);
         }
-      })
+      };
 
-      enableSwiper(desktopEffects)
+      window.addEventListener("resize", responsiveInit);
+
+      responsiveInit();
     </script>
   </body>
 </html>
