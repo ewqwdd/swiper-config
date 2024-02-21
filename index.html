@@ -14,50 +14,44 @@
       <div class="swiper-wrapper">
         <!-- Slides -->
         <div class="swiper-slide swiper-card">
-            <div class="picture">
-                <img src="slider_image.png"/>
-            </div>
-            <div class="card-content">
-                <h3>
-                    Dowiedz się, jak tworzyć różne logo
-                </h3>
-                <p>
-                    It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. 
-                </p>
-            </div>
+            <img src="slider_image.png" />
+          <div class="card-content">
+            <h3>Dowiedz się, jak tworzyć różne logo</h3>
+            <p>
+              It is a long established fact that a reader will be distracted by the readable content of a page
+              when looking at its layout. 
+            </p>
+          </div>
         </div>
         <div class="swiper-slide swiper-card">
-            <img src="slider_image.png"/>
-            <div class="card-content">
-                <h3>
-                    Dowiedz się, jak tworzyć różne logo
-                </h3>
-                <p>
-                    It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. 
-                </p>
-            </div>
+          <img src="slider_image.png" />
+          <div class="card-content">
+            <h3>Dowiedz się, jak tworzyć różne logo</h3>
+            <p>
+              It is a long established fact that a reader will be distracted by the readable content of a page
+              when looking at its layout. 
+            </p>
+          </div>
         </div>
         <div class="swiper-slide swiper-card">
-            <img src="slider_image.png"/>
-            <div class="card-content">
-                <h3>
-                    Dowiedz się, jak tworzyć różne logo
-                </h3>
-                <p>
-                    It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. 
-                </p>
-            </div>
+          <img src="slider_image.png" />
+          <div class="card-content">
+            <h3>Dowiedz się, jak tworzyć różne logo</h3>
+            <p>
+              It is a long established fact that a reader will be distracted by the readable content of a page
+              when looking at its layout. 
+            </p>
+          </div>
         </div>
         <div class="swiper-slide swiper-card">
-            <img src="slider_image.png"/>
-            <div class="card-content">
-                <h3>
-                    Dowiedz się, jak tworzyć różne logo
-                </h3>
-                <p>
-                    It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. 
-                </p>
-            </div>
+          <img src="slider_image.png" />
+          <div class="card-content">
+            <h3>Dowiedz się, jak tworzyć różne logo</h3>
+            <p>
+              It is a long established fact that a reader will be distracted by the readable content of a page
+              when looking at its layout. 
+            </p>
+          </div>
         </div>
       </div>
       <!-- If we need pagination -->
@@ -71,28 +65,64 @@
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
 
     <script>
-      const rotateZRegex = /rotateZ\([^']+\)/g;
-      const translateRegex = /, -[0-9]00px/g;
-      const swiper = new Swiper(".swiper", {
+      // Breakpoint for mobile version
+      const MOBILE_BREAKPOINT = 560
+
+      const desktopEffects = {
+          isDesktop: true,
+          prev: {
+            shadow: true,
+            translate: ["-50px", "20px", -50],
+            rotate: [0, 0, -7],
+          },
+          next: {
+            shadow: true,
+            translate: ["70px", "0px", -50],
+            rotate: [0, 0, 5],
+          },
+        }
+        const mobileEffects = {
+          isDesktop: false,
+          prev: {
+            shadow: true,
+            translate: ["-20px", "0px", -300],
+            rotate: [0, 0, -4],
+          },
+          next: {
+            shadow: true,
+            translate: ["20px", "0px", -300],
+            rotate: [0, 0, 2],
+          },
+        }
+
+      let swiper
+
+      const enableSwiper = (effects) => {
+        swiper?.destroy()
+        swiper = new Swiper(".swiper", {
         grabCursor: true,
         effect: "creative",
-        creativeEffect: {
-            prev: {
-            shadow: true,
-            translate: ["-50px", '20px', -50],
-            rotate: [0, 0, -7]
-            },
-            next: {
-            shadow: true,
-            translate: ["70px", '0px', -50],
-            rotate: [0, 0, 5]
-            },
-        },
+        creativeEffect: effects,
         navigation: {
-                nextEl: ".swiper-button-next",
-                prevEl: ".swiper-button-prev",
-            },
-        });
-</script>
+          nextEl: ".swiper-button-next",
+          prevEl: ".swiper-button-prev",
+        },
+        pagination: {
+          el: ".swiper-pagination",
+          clickable: true,
+        },
+      });
+      }
+
+      window.addEventListener('resize', () => {
+        if (window.innerWidth < MOBILE_BREAKPOINT && swiper.params.creativeEffect.isDesktop) {
+            enableSwiper(mobileEffects)
+        } else if (window.innerWidth >= MOBILE_BREAKPOINT && !swiper.params.creativeEffect.isDesktop){
+            enableSwiper(desktopEffects)
+        }
+      })
+
+      enableSwiper(desktopEffects)
+    </script>
   </body>
 </html>
